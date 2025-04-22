@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click & Passive Button Upgrade</title>
+</head>
+<body>
+
+  <h1 id="counter">0</h1>
+  <button onclick="addOne()">Click me!</button>
+
+  <h2>Active Upgrade</h2>
+  <p>Price: <span id="activePrice">50</span> clicks</p>
+  <button onclick="buyActiveUpgrade()">Buy Active Upgrade</button>
+
+  <h2>Passive Upgrade</h2>
+  <p>Price: <span id="passivePrice">100</span> clicks</p>
+  <button onclick="buyPassiveUpgrade()">Buy Passive Upgrade</button>
+
+  <script>
+    let count = 0; // Player's current clicks
+    let activeUpgradePrice = 50; // Price to buy the first active upgrade
+    let passiveUpgradePrice = 100; // Price to buy the first passive upgrade
+    let activeClickIncrease = 1; // The amount added to clicks with each active upgrade
+    let passiveClickIncrease = 1; // The amount added to clicks with each passive upgrade
+
+    let passiveInterval; // To store the interval for passive generation
+
+    // Active button: adds 1 based on the active upgrade
+    function addOne() {
+      count += activeClickIncrease;
+      document.getElementById('counter').innerText = count;
+    }
+
+    // Active upgrade button: increases the price and click increase by +1
+    function buyActiveUpgrade() {
+      if (count >= activeUpgradePrice) {
+        count -= activeUpgradePrice;
+        activeClickIncrease++; // Increase the click value by 1
+
+        activeUpgradePrice = Math.floor(activeUpgradePrice * 1.5); // 150% of the current price
+
+        document.getElementById('counter').innerText = count;
+        document.getElementById('activePrice').innerText = activeUpgradePrice;
+      } else {
+        alert("You don't have enough clicks for the active upgrade!");
+      }
+    }
+
+    // Passive upgrade button: starts a passive click generator
+    function buyPassiveUpgrade() {
+      if (count >= passiveUpgradePrice) {
+        count -= passiveUpgradePrice;
+        passiveClickIncrease++; // Increase passive click generation
+
+        // Start passive generation (if not already running)
+        if (!passiveInterval) {
+          passiveInterval = setInterval(function() {
+            count += passiveClickIncrease; // Add passive click
+            document.getElementById('counter').innerText = count;
+          }, 1000); // Passive click every 1 second
+        }
+
+        // Increase the price of the passive upgrade by 150%
+        passiveUpgradePrice = Math.floor(passiveUpgradePrice * 1.5);
+
+        document.getElementById('counter').innerText = count;
+        document.getElementById('passivePrice').innerText = passiveUpgradePrice;
+      } else {
+        alert("You don't have enough clicks for the passive upgrade!");
+      }
+    }
+  </script>
+
+</body>
+</html>
