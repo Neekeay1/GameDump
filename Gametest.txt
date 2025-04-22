@@ -5,4 +5,4 @@ Let's make a game!
 	created: 22/04/2025
 	version:1.00
 Settings
-	background:https://github.com/Neekeay1/GameDump/blob/main/assets/bg.jpg
+	background:https://raw.githubusercontent.com/Neekeay1/GameDump/refs/heads/main/assets/bg.jpg
