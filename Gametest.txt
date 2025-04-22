@@ -6,3 +6,7 @@ Let's make a game!
 	version:1.00
 Settings
 	background:https://raw.githubusercontent.com/Neekeay1/GameDump/refs/heads/main/assets/bg.jpg
+	building cost increase:5%
+	building cost refund:50%
+Layout
+	use default
